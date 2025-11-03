@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Volume2, VolumeX } from 'lucide-react';
-import defaultCharacters from './charactersData';
+import defaultCharacters from './characters.json';
 
 const App = () => {
   const [characters, setCharacters] = useState(() => {
