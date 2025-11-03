@@ -1,6 +1,6 @@
 # Epic Characters App
 
-A beautiful React application to explore and manage characters from the Mahabharata and Ramayana epics. Features include swipe navigation, text-to-speech audio, and an admin panel for managing character data.
+A beautiful React application to explore characters from the Mahabharata and Ramayana epics. Features include swipe navigation, text-to-speech audio, and custom audio upload functionality.
 
 ## Features
 
@@ -12,19 +12,13 @@ A beautiful React application to explore and manage characters from the Mahabhar
 
 🎵 **Audio Support**
 - Built-in text-to-speech narration
-- Read character descriptions aloud
+- Upload custom audio files for each character
 - Adjustable speech rate and pitch
-
-⚙️ **Admin Panel**
-- Add new characters with name, epic, description, and emoji
-- Edit existing characters
-- Delete characters
-- Live character list in admin view
+- Fallback to text-to-speech when no custom audio
 
 💾 **Data Management**
 - Automatic saving to browser storage
-- Download character data as JSON
-- Import character data from JSON files
+- Characters managed through code in `src/charactersData.js`
 - Persistent data across sessions
 
 ## Project Structure
@@ -35,7 +29,8 @@ epic-characters/
 │   └── index.html
 ├── src/
 │   ├── index.js
-│   └── App.js
+│   ├── App.js
+│   └── charactersData.js  # Character data configuration
 ├── package.json
 ├── .gitignore
 └── README.md
@@ -79,28 +74,35 @@ Your app will be live in minutes!
 
 ## How to Use
 
-### Main View
-- Click the **Settings ⚙️** button in the top right to open the admin panel
+### Viewing Characters
 - Use arrow buttons to navigate between characters
 - Swipe left/right on mobile to navigate
-- Click **Listen** to hear the character description
+- Click **Listen** to hear the character description (uses text-to-speech by default)
+- Click **Upload Audio** to add a custom audio file for the current character
 
-### Admin Panel
-1. **Add Character:**
-   - Fill in Name, Epic, Emoji Icon, and Description
-   - Click "Add Character"
+### Adding or Modifying Characters
+All character data is managed through code in the `src/charactersData.js` file.
 
-2. **Edit Character:**
-   - Click the blue edit icon next to a character
-   - Modify the fields
-   - Click "Update"
+To add a new character:
+1. Open `src/charactersData.js`
+2. Add a new object to the `defaultCharacters` array:
+   ```javascript
+   {
+     id: 5,  // Use a unique ID
+     name: 'Character Name',
+     epic: 'Mahabharata', // or 'Ramayana'
+     description: 'Detailed description of the character...',
+     image: '🔱',  // An emoji icon
+     audioUrl: null
+   }
+   ```
+3. Save the file
+4. Restart the development server to see changes
 
-3. **Delete Character:**
-   - Click the red delete icon next to a character
-
-4. **Backup/Restore:**
-   - Click "Download Data" to save as JSON
-   - Click "Upload Data" to restore from JSON
+To edit or remove a character:
+1. Open `src/charactersData.js`
+2. Modify or remove the character object from the array
+3. Save and restart the development server
 
 ## Sample Characters Included
 
@@ -132,11 +134,11 @@ Edit `public/index.html` and update the `<title>` tag
 ### Change Colors
 Edit `src/App.js` and modify the Tailwind color classes (orange, slate, amber, etc.)
 
-### Add Default Characters
-Edit `src/App.js` and add to the `defaultCharacters` array
+### Add or Modify Characters
+Edit `src/charactersData.js` and modify the `defaultCharacters` array (see "Adding or Modifying Characters" section above)
 
 ### Change Speech Rate
-Edit `src/App.js`, line ~175, adjust `utterance.rate` value (0.5 to 2.0)
+Edit `src/App.js`, find the `utterance.rate` setting, and adjust the value (0.5 to 2.0)
 
 ## License
 
