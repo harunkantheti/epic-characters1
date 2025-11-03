@@ -5,7 +5,28 @@ import defaultCharacters from './characters.json';
 const App = () => {
   const [characters, setCharacters] = useState(() => {
     const saved = localStorage.getItem('epicCharacters');
-    return saved ? JSON.parse(saved) : defaultCharacters;
+    if (!saved) {
+      return defaultCharacters;
+    }
+
+    // Merge saved data with default characters to ensure new/updated characters are loaded
+    const savedCharacters = JSON.parse(saved);
+    const savedMap = new Map(savedCharacters.map(c => [c.id, c]));
+
+    // Update existing characters and add new ones from defaultCharacters
+    const mergedCharacters = defaultCharacters.map(defaultChar => {
+      const savedChar = savedMap.get(defaultChar.id);
+      if (savedChar) {
+        // Keep user's custom audioUrl but update other fields from JSON
+        return {
+          ...defaultChar,
+          audioUrl: savedChar.audioUrl // Preserve user's uploaded audio
+        };
+      }
+      return defaultChar; // New character
+    });
+
+    return mergedCharacters;
   });
 
   const [currentIndex, setCurrentIndex] = useState(0);
