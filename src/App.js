@@ -31,7 +31,6 @@ const App = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  const [audioMap, setAudioMap] = useState({}); // Store audio files by character ID
   const synthRef = useRef(null);
   const audioRef = useRef(null);
 
@@ -86,59 +85,22 @@ const App = () => {
       return;
     }
 
-    // Check if there's an audio file for this character
-    if (audioMap[currentCharacter.id]) {
-      // Play audio file
-      const audio = new Audio(audioMap[currentCharacter.id]);
-      audioRef.current = audio;
-      
-      audio.onplay = () => setIsPlaying(true);
-      audio.onended = () => setIsPlaying(false);
-      audio.onerror = () => {
-        setIsPlaying(false);
-        alert('Error playing audio file');
-      };
-      
-      audio.play();
-    } else {
-      // Fallback to text-to-speech
-      const synth = synthRef.current;
-      synth.cancel();
+    // Use text-to-speech
+    const synth = synthRef.current;
+    synth.cancel();
 
-      const utterance = new SpeechSynthesisUtterance(
-        `${currentCharacter.name}. ${currentCharacter.description}`
-      );
-      utterance.rate = 0.95;
-      utterance.pitch = 1;
-      utterance.onstart = () => setIsPlaying(true);
-      utterance.onend = () => setIsPlaying(false);
-      utterance.onerror = () => setIsPlaying(false);
+    const utterance = new SpeechSynthesisUtterance(
+      `${currentCharacter.name}. ${currentCharacter.description}`
+    );
+    utterance.rate = 0.95;
+    utterance.pitch = 1;
+    utterance.onstart = () => setIsPlaying(true);
+    utterance.onend = () => setIsPlaying(false);
+    utterance.onerror = () => setIsPlaying(false);
 
-      synth.speak(utterance);
-    }
+    synth.speak(utterance);
   };
 
-  const handleAudioUpload = (characterId, e) => {
-    const file = e.target.files[0];
-    if (file) {
-      // Check if it's an audio file
-      if (!file.type.startsWith('audio/')) {
-        alert('Please upload an audio file');
-        return;
-      }
-
-      // Create a URL for the audio file
-      const audioUrl = URL.createObjectURL(file);
-      
-      // Store the audio URL
-      setAudioMap(prev => ({
-        ...prev,
-        [characterId]: audioUrl
-      }));
-
-      alert(`Audio uploaded for ${currentCharacter.name}`);
-    }
-  };
 
   // MAIN VIEW
   if (characters.length === 0) {
@@ -183,23 +145,10 @@ const App = () => {
               ) : (
                 <>
                   <Volume2 size={20} />
-                  Listen {audioMap[currentCharacter?.id] && '(Custom)'}
+                  Listen
                 </>
               )}
             </button>
-
-            {/* Audio Upload Button */}
-            <label className="block mt-3">
-              <div className="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg cursor-pointer transition-colors text-sm">
-                📁 {audioMap[currentCharacter?.id] ? 'Change Audio' : 'Upload Audio'}
-              </div>
-              <input
-                type="file"
-                accept="audio/*"
-                onChange={(e) => handleAudioUpload(currentCharacter?.id, e)}
-                className="hidden"
-              />
-            </label>
           </div>
 
           <div className="bg-orange-50 px-8 py-4 text-center text-sm font-semibold text-orange-700">
