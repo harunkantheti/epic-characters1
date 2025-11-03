@@ -5,7 +5,7 @@
     "epic": "Mahabharata",
     "description": "The third Pandava prince, Arjuna is a master archer and central figure in the Bhagavad Gita. Known for his skill in combat and his moral dilemmas on the battlefield of Kurukshetra.",
     "image": "🏹",
-    "audioUrl": null
+    "audioUrl": "/audio/arjuna.mp3"
   },
   {
     "id": 2,
@@ -13,7 +13,7 @@
     "epic": "Mahabharata",
     "description": "The supreme deity incarnated as a charioteer and strategist, Krishna plays crucial role. His wisdom and divine love are celebrated across Hindu philosophy.",
     "image": "🎺",
-    "audioUrl": null
+    "audioUrl": "/audio/krishna.mp3"
   },
   {
     "id": 3,
@@ -21,7 +21,7 @@
     "epic": "Ramayana",
     "description": "The seventh avatar of Vishnu and the ideal man, Rama is the protagonist of the Ramayana. He is celebrated for his virtue, courage, and unwavering devotion to dharma.",
     "image": "⚔️",
-    "audioUrl": null
+    "audioUrl": "/audio/rama.mp3"
   },
   {
     "id": 4,
@@ -29,7 +29,7 @@
     "epic": "Ramayana",
     "description": "The devoted follower of Rama, Hanuman is a monkey warrior of immense strength and loyalty. He symbolizes courage, wisdom, and perfect devotion to duty.",
     "image": "🐵",
-    "audioUrl": null
+    "audioUrl": "/audio/hanuman.mp3"
   },
   {
     "id": 5,
@@ -37,6 +37,6 @@
     "epic": "Mahabharata",
     "description": "The Pandavas refer to the five legendary brothers, Yudhishtira, Bhima, Arjuna, Nakula, and Sahadeva, who are central figures of the ancient Hindu epic Mahabharata. They are acknowledged as the sons of Pandu, the King of Kuru.",
     "image": "👥",
-    "audioUrl": null
+    "audioUrl": "/audio/pancha-pandava.mp3"
   }
 ]

@@ -85,7 +85,37 @@ const App = () => {
       return;
     }
 
-    // Use text-to-speech
+    // Check if there's an audio file for this character
+    if (currentCharacter.audioUrl) {
+      // Try to play audio file
+      const audio = new Audio(currentCharacter.audioUrl);
+      audioRef.current = audio;
+
+      audio.onloadeddata = () => {
+        setIsPlaying(true);
+        audio.play().catch(err => {
+          console.error('Error playing audio:', err);
+          setIsPlaying(false);
+          // Fallback to TTS if audio fails
+          playTTS();
+        });
+      };
+
+      audio.onended = () => setIsPlaying(false);
+
+      audio.onerror = () => {
+        console.error('Error loading audio file:', currentCharacter.audioUrl);
+        setIsPlaying(false);
+        // Fallback to TTS if audio file not found
+        playTTS();
+      };
+    } else {
+      // No audio file, use TTS
+      playTTS();
+    }
+  };
+
+  const playTTS = () => {
     const synth = synthRef.current;
     synth.cancel();
 

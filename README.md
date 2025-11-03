@@ -1,6 +1,6 @@
 # Epic Characters App
 
-A beautiful React application to explore characters from the Mahabharata and Ramayana epics. Features include swipe navigation, text-to-speech audio, and custom audio upload functionality.
+A beautiful React application to explore characters from the Mahabharata and Ramayana epics. Features include swipe navigation and audio narration for each character.
 
 ## Features
 
@@ -11,14 +11,15 @@ A beautiful React application to explore characters from the Mahabharata and Ram
 - Emoji icons for visual representation
 
 🎵 **Audio Support**
-- Built-in text-to-speech narration
-- Upload custom audio files for each character
-- Adjustable speech rate and pitch
-- Fallback to text-to-speech when no custom audio
+- Custom audio files for each character
+- Automatic fallback to text-to-speech if audio file not found
+- Adjustable speech rate and pitch for TTS
+- Support for MP3, WAV, OGG, and M4A formats
 
 💾 **Data Management**
-- Automatic saving to browser storage
-- Characters managed through code in `src/charactersData.js`
+- Automatic character updates from JSON file
+- Characters managed through `src/characters.json`
+- Automatic loading of new characters without cache clearing
 - Persistent data across sessions
 
 ## Project Structure
@@ -26,11 +27,12 @@ A beautiful React application to explore characters from the Mahabharata and Ram
 ```
 epic-characters/
 ├── public/
+│   ├── audio/           # Audio files for characters
 │   └── index.html
 ├── src/
 │   ├── index.js
 │   ├── App.js
-│   └── charactersData.js  # Character data configuration
+│   └── characters.json     # Character data configuration
 ├── package.json
 ├── .gitignore
 └── README.md
@@ -77,39 +79,45 @@ Your app will be live in minutes!
 ### Viewing Characters
 - Use arrow buttons to navigate between characters
 - Swipe left/right on mobile to navigate
-- Click **Listen** to hear the character description (uses text-to-speech by default)
-- Click **Upload Audio** to add a custom audio file for the current character
+- Click **Listen** to play the character's audio narration
 
 ### Adding or Modifying Characters
-All character data is managed through code in the `src/charactersData.js` file.
 
-To add a new character:
-1. Open `src/charactersData.js`
-2. Add a new object to the `defaultCharacters` array:
-   ```javascript
+All character data is managed in `src/characters.json`.
+
+**To add a new character:**
+
+1. Open `src/characters.json`
+2. Add a new object to the array:
+   ```json
    {
-     id: 5,  // Use a unique ID
-     name: 'Character Name',
-     epic: 'Mahabharata', // or 'Ramayana'
-     description: 'Detailed description of the character...',
-     image: '🔱',  // An emoji icon
-     audioUrl: null
+     "id": 6,
+     "name": "Character Name",
+     "epic": "Mahabharata",
+     "description": "Detailed description of the character...",
+     "image": "🔱",
+     "audioUrl": "/audio/character-name.mp3"
    }
    ```
-3. Save the file
-4. Restart the development server to see changes
+3. Add the audio file to `public/audio/character-name.mp3`
+4. Commit and deploy your changes
 
-To edit or remove a character:
-1. Open `src/charactersData.js`
-2. Modify or remove the character object from the array
-3. Save and restart the development server
+**To add audio files:**
+
+1. Place your audio file (MP3, WAV, OGG, or M4A) in `public/audio/`
+2. Name it appropriately (e.g., `arjuna.mp3`, `krishna.mp3`)
+3. Update the `audioUrl` field in `src/characters.json` to match: `/audio/filename.mp3`
+4. If no audio file is provided or it fails to load, the app automatically falls back to text-to-speech
+
+See `public/audio/README.md` for detailed audio file instructions.
 
 ## Sample Characters Included
 
-- Arjuna (Mahabharata)
-- Krishna (Mahabharata & Ramayana)
-- Rama (Ramayana)
-- Hanuman (Ramayana)
+- Arjuna (Mahabharata) 🏹
+- Krishna (Mahabharata) 🎺
+- Rama (Ramayana) ⚔️
+- Hanuman (Ramayana) 🐵
+- Pancha Pandava (Mahabharata) 👥
 
 ## Technologies Used
 
