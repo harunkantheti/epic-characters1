@@ -53,7 +53,7 @@ const defaultCharacters = [
     "name": "Pancha Pandava",
     "epic": "Mahabharata",
     "description": "The Pandavas refer to the five legendary brothers, Yudhishtira, Bhima, Arjuna, Nakula, and Sahadeva, who are central figures of the ancient Hindu epic Mahabharata. They are acknowledged as the sons of Pandu, the King of Kuru.",
-    "image": "",
+    "image": '🐵',
     "audioUrl": null
   }
 ];
