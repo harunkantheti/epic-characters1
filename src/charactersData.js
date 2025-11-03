@@ -47,6 +47,14 @@ const defaultCharacters = [
     description: 'The devoted follower of Rama, Hanuman is a monkey warrior of immense strength and loyalty. He symbolizes courage, wisdom, and perfect devotion to duty.',
     image: '🐵',
     audioUrl: null
+  },
+  {
+    "id": 5,
+    "name": "Pancha Pandava",
+    "epic": "Mahabharata",
+    "description": "The Pandavas refer to the five legendary brothers, Yudhishtira, Bhima, Arjuna, Nakula, and Sahadeva, who are central figures of the ancient Hindu epic Mahabharata. They are acknowledged as the sons of Pandu, the King of Kuru.",
+    "image": "",
+    "audioUrl": null
   }
 ];
 
