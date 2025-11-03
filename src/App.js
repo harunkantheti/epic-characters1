@@ -247,19 +247,6 @@ const App = () => {
                 </>
               )}
             </button>
-
-            {/* Audio Upload Button */}
-            <label className="block mt-3">
-              <div className="bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg cursor-pointer transition-colors text-sm">
-                📁 {audioMap[currentCharacter?.id] ? 'Change Audio' : 'Upload Audio'}
-              </div>
-              <input
-                type="file"
-                accept="audio/*"
-                onChange={(e) => handleAudioUpload(currentCharacter?.id, e)}
-                className="hidden"
-              />
-            </label>
           </div>
 
           <div className="bg-orange-50 px-8 py-4 text-center text-sm font-semibold text-orange-700">
@@ -333,15 +320,6 @@ const App = () => {
   }
 ]`}
               </pre>
-            </div>
-
-            <div className="mb-6 pb-6 border-b border-gray-200">
-              <p className="text-sm text-gray-600 mb-2">
-                <strong>💡 Tip:</strong>
-              </p>
-              <p className="text-xs text-gray-600">
-                After uploading data, use the "Upload Audio" button on each character card to add custom audio files (MP3, WAV, etc.)
-              </p>
             </div>
 
             <button
